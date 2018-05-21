@@ -11,6 +11,9 @@ contract Quiz {
 	uint constant MAXCHOICES = 5;
 	uint constant FEE = 989;
 
+	uint256 startTime;
+	uint256 endTime;
+
 
 	constructor (address _quizMaker) public {
 		quizMaker = _quizMaker;
@@ -44,6 +47,8 @@ contract Quiz {
 			answers[i].openAnswer(_start, _end, _cap);
 
 		numberOfChoices = _choices;
+		startTime = _start;
+		endTime = _end;
 	}
 
 	function closeQuiz(uint8 rightAnswer) onlyQuizMaker external {
@@ -60,7 +65,7 @@ contract Quiz {
 		W = answers[rightAnswer].getGathered();
 		for(j = 0; j < numberOfChoices; j++) {
 			if(j != rightAnswer)
-				A += answers[j].getGathered();
+				L += answers[j].getGathered();
 		}
 
 
@@ -74,7 +79,19 @@ contract Quiz {
 	}
 
 	function prize(uint256 _A, uint256 _W, uint256 _L) internal pure returns(uint256) {
-		return ((_W + _L) * _A * FEE / 1000) / _L;
+		return ((_W + _L) * _A * FEE / 1000) / _W;
+	}
+
+
+	function cancelQuiz() onlyQuizMaker public {
+		uint256 total;
+		for(uint8 i = 0; i < numberOfChoices; i++) {
+			total = answers[i].getTotalPlayers();
+			for(uint256 j = 0; j < total; j++) {
+				answers[i].getAddress(j).transfer(answers[i].getAmount(j));
+			}
+		}
+
 	}
 
 }
