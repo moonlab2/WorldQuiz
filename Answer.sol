@@ -1,7 +1,6 @@
 pragma solidity ^0.4.23;
 
 contract Answer {
-	address public quizMaker;
 	address public quiz;
 
 	uint256 public gathered;
@@ -18,27 +17,18 @@ contract Answer {
 	uint256 public totalPlayers;
 
 
-	constructor (address _quizMaker, address _quiz) public {
-		quizMaker = _quizMaker;
+	constructor (address _quiz) public {
 		quiz = _quiz;
 
 		opened = false;
 	}
 
-	modifier fromQuizMaker() {
-		require(msg.sender == quizMaker);
-		_;
-	}
 	modifier fromQuizContract() {
 		require(msg.sender == quiz);
 		_;
 	}
 
-	function changeQuizMaker(address _newQuizMaker) fromQuizMaker external {
-		quizMaker = _newQuizMaker;
-	}
-
-	function changeQuiz(address _quiz) fromQuizMaker external {
+	function changeQuiz(address _quiz) fromQuizContract external {
 		quiz = _quiz;
 	}
 
