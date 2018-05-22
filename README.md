@@ -14,7 +14,7 @@ If you choose the right answer, you'll get your ETH back with prize ETH. If you 
 All the following rules will be coded and veryfied on ethereum and no one can change, take advantages or crack(hopefully).<br />
 
 ### ETH
-All played ETH will be returned to winners excluding the fee(1.1%).<br />
+All played ETH will be returned to winners excluding the fee(0.7%).<br />
 Quiz Maker can cancel the quiz when really bad things happen. Then all players get refund their ETH.<br />
 Only after returning back all ETH, quiz maker can retrieve the fee ETH.
 
