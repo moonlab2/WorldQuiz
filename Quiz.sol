@@ -1,3 +1,10 @@
+/* World Quiz on world computer    by moon.lab
+ *
+ * Information Page: https://github.com/moonlab2/WorldQuiz
+ *                   https://medium.com/@moon.lab2
+ * All announcements about quiz will be posted on those pages.
+ * And github page is authentic.
+ */
 pragma solidity ^0.4.23;
 
 import "./Answer.sol";
@@ -9,10 +16,9 @@ contract Quiz {
 	mapping (uint8 => Answer) internal answers;
 
 	uint constant MAXCHOICES = 5;
-	uint constant FEE = 989;
+	uint constant FEE = 993;
 
-	uint256 startTime;
-	uint256 endTime;
+	uint256 public sponsored;
 
 	bool public fundsLock;
 
@@ -50,8 +56,6 @@ contract Quiz {
 			answers[i].openAnswer(_start, _end, _cap);
 
 		numberOfChoices = _choices;
-		startTime = _start;
-		endTime = _end;
 		fundsLock = true;
 	}
 

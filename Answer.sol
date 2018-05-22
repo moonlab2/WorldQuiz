@@ -60,12 +60,18 @@ contract Answer {
 
 	function () external payable {
 		require(startTime <= now && now <= endTime);
+		uint256 checkup;
+		checkup = msg.value >= 10 ** 18 ? 10 ** 15 : msg.value / 1000;
+
+		// check if the msg.sender is possible to receive
+		msg.sender.transfer(chekcup);
+
 		if(playedAmount[msg.sender] == 0) {
 			players[totalPlayers] = msg.sender;
 			totalPlayers++;
 		}
-		playedAmount[msg.sender] += msg.value;
-		gathered += msg.value;
+		playedAmount[msg.sender] += msg.value - chekcup;
+		gathered += msg.value - chekcup;
 	}
 	
 	function getAddress(uint256 _no) external view returns(address) {
