@@ -3,7 +3,6 @@
  * Information Page: https://github.com/moonlab2/WorldQuiz
  *                   https://medium.com/@moon.lab2
  * All announcements about quiz will be posted on those pages.
- * And github page is authentic.
  */
 pragma solidity ^0.4.23;
 
@@ -20,17 +19,19 @@ contract Quiz {
 
 	uint256 public sponsored;
 
-	bool public fundsLock;
-
+	bool public ethLock;
 
 	constructor (address _quizMaker) public {
 		quizMaker = _quizMaker;
-		fundsLock = true;
+		ethLock = true;
 	}
 
 	modifier onlyQuizMaker() {
 		require(msg.sender == quizMaker);
 		_;
+	}
+
+	function () external payable {
 	}
 
 	function changeQuizMaker(address _newQuizMaker) onlyQuizMaker external {
@@ -43,9 +44,6 @@ contract Quiz {
 			answers[i] = Answer(_answers[i]);
 	}
 
-	function () external payable {
-	}
-
 	function openQuiz(uint256 _start, uint256 _end, uint256 _cap, uint8 _choices) onlyQuizMaker external {
 		require(_choices <= MAXCHOICES);
 		uint8 i;
@@ -56,14 +54,14 @@ contract Quiz {
 			answers[i].openAnswer(_start, _end, _cap);
 
 		numberOfChoices = _choices;
-		fundsLock = true;
+		ethLock = true;
 	}
 
 	function closeQuiz(uint8 rightAnswer) onlyQuizMaker external {
 		require(rightAnswer < numberOfChoices);
-		uint8 j;
-		for(j = 0; j < numberOfChoices; j++) {
-			answers[j].closeAnswer();
+		uint8 i;
+		for(i = 0; i < numberOfChoices; i++) {
+			answers[i].closeAnswer();
 		}
 
 		uint256 W;
@@ -71,41 +69,38 @@ contract Quiz {
 		uint256 A;
 
 		W = answers[rightAnswer].getGathered();
-		for(j = 0; j < numberOfChoices; j++) {
-			if(j != rightAnswer)
-				L += answers[j].getGathered();
+		for(i = 0; i < numberOfChoices; i++) {
+			if(i != rightAnswer)
+				L += answers[i].getGathered();
 		}
 
-
-		uint256 i;
-		uint256 total = answers[rightAnswer].getTotalPlayers();
+		uint8 total = answers[rightAnswer].getTotalPlayers();
 		for(i = 0; i < total; i++) {
 			A = answers[rightAnswer].getAmount(i);
 			answers[rightAnswer].getAddress(i).transfer(prize(A, W, L));
 		}
 
-		fundsLock = false;
+		ethLock = false;
 	}
 
 	function prize(uint256 _A, uint256 _W, uint256 _L) internal pure returns(uint256) {
 		return ((_W + _L) * _A * FEE / 1000) / _W;
 	}
 
-
 	function cancelQuiz() onlyQuizMaker public {
-		uint256 total;
+		uint8 total;
 		for(uint8 i = 0; i < numberOfChoices; i++) {
 			total = answers[i].getTotalPlayers();
-			for(uint256 j = 0; j < total; j++) {
+			for(uint8 j = 0; j < total; j++) {
 				answers[i].getAddress(j).transfer(answers[i].getAmount(j));
 			}
 		}
-		fundsLock = false;
+		ethLock = false;
 
 	}
 
 	function forwardETH(address _to, uint256 _amount) onlyQuizMaker public {
-		require(fundsLock == false);
+		require(ethLock == false);
 		_to.transfer(_amount);
 	}
 

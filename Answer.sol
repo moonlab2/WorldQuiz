@@ -1,10 +1,13 @@
 pragma solidity ^0.4.23;
 
+import "./WQVault.sol";
+
 contract Answer {
 	address public quiz;
+	WQVault vault;
 
 	uint256 public gathered;
-	uint256 public cap;
+	uint8 public cap;
 
 	uint256 public startTime;
 	uint256 public endTime;
@@ -12,15 +15,17 @@ contract Answer {
 	bool public opened;
 
 	mapping (address => uint256) public playedAmount;
-	mapping (uint256 => address) public players;
+	mapping (uint8 => address) public players;
 
-	uint256 public totalPlayers;
+	uint8 public totalPlayers;
 
 
-	constructor (address _quiz) public {
+	constructor (address _quiz, address _vault) public {
 		quiz = _quiz;
+		vault = WQVault(_vault);
 
 		opened = false;
+
 	}
 
 	modifier fromQuizContract() {
@@ -42,7 +47,7 @@ contract Answer {
 		opened = true;
 		gathered = 0;
 
-		for(uint256 i = 0; i < totalPlayers; i++) {
+		for(uint8 i = 0; i < totalPlayers; i++) {
 			playedAmount[players[i]] = 0;
 		}
 
@@ -60,18 +65,19 @@ contract Answer {
 
 	function () external payable {
 		require(startTime <= now && now <= endTime);
+		require(cap > totalPlayers);
 		uint256 checkup;
 		checkup = msg.value >= 10 ** 18 ? 10 ** 15 : msg.value / 1000;
 
 		// check if the msg.sender is possible to receive
-		msg.sender.transfer(chekcup);
+		vault.transfer(msg.sender, chekcup);
 
 		if(playedAmount[msg.sender] == 0) {
 			players[totalPlayers] = msg.sender;
 			totalPlayers++;
 		}
 		playedAmount[msg.sender] += msg.value - chekcup;
-		gathered += msg.value - chekcup;
+		gathered += msg.value;
 	}
 	
 	function getAddress(uint256 _no) external view returns(address) {
@@ -86,7 +92,7 @@ contract Answer {
 	function getGathered() external view returns(uint256) {
 		return gathered;
 	}
-	function getTotalPlayers() external view returns(uint256) {
+	function getTotalPlayers() external view returns(uint8) {
 		return totalPlayers;
 	}
 	function isOpen() external view returns(bool) {

@@ -2,8 +2,8 @@
 
 ## VERY IMPORTANT
 If you want to play World Quiz, <br />
-YOU HAVE TO USE YOUR WALLET ADDRESS WHICH YOU OWN AND POSSESS YOUR PRIVATE KEY. NOT EXCHANGE WALLET.<br />
-If you use exchange wallet or something, you can't receive your winning prize.
+DON'T USE EXCHANGE WALLET!! USE ADDRESS THAT CAN SEND AND RECEIVE ETH.<br />
+World Quiz will send ETH to the address that you sent from. If you use exchange wallet, you can't receive your winning prize.
 
 ## How To Play?
 You'll see a question about an event, news or whatever will happen in few days. 
@@ -26,7 +26,7 @@ Each question has it's own time limit for playing. You can't play after the limi
 
 ### prize calculation
 if X answered right, what X will get is <br />
-(W + L) * 0.989 * A / W<br />
+(W + L) * 0.993 * A / W<br />
 W: total gathered ETH on right answer<br />
 L: total gathered ETH on wrong answer<br />
 A: ETH transfered from address X<br />
@@ -34,7 +34,7 @@ A: ETH transfered from address X<br />
 if X transfered ETH to wrong answer contract, X gets nothing.
 
 ## Policies
-1.1% of total funded ETH goes to moonglade lab. and the ETH will be used for better Quiz lottery or donated to admirable organizations(github?)<br />
+0.7% of total funded ETH goes to moonglade lab. and the ETH will be used for better Quiz lottery or donated to admirable organizations(github?)<br />
 Only the Quiz Maker can publish a quiz.<br />
 
 
