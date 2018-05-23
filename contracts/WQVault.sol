@@ -5,7 +5,7 @@ contract WQVault {
 
 	mapping (address => bool) spender;
 
-	construct (address _owner) public {
+	constructor (address _owner) public {
 		owner = _owner;
 		spender[owner] = true;
 	}
@@ -14,7 +14,7 @@ contract WQVault {
 	}
 
 	modifier onlyOwner() {
-		require(msg.sender = owner);
+		require(msg.sender == owner);
 		_;
 	}
 

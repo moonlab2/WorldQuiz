@@ -44,7 +44,7 @@ contract Quiz {
 			answers[i] = Answer(_answers[i]);
 	}
 
-	function openQuiz(uint256 _start, uint256 _end, uint256 _cap, uint8 _choices) onlyQuizMaker external {
+	function openQuiz(uint256 _start, uint256 _end, uint8 _cap, uint8 _choices) onlyQuizMaker external {
 		require(_choices <= MAXCHOICES);
 		uint8 i;
 		for(i = 0; i < _choices; i++)

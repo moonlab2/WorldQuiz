@@ -37,7 +37,7 @@ contract Answer {
 		quiz = _quiz;
 	}
 
-	function openAnswer(uint256 _start, uint256 _end, uint _cap) fromQuizContract external {
+	function openAnswer(uint256 _start, uint256 _end, uint8 _cap) fromQuizContract external {
 		require(!opened);
 
 		startTime = _start;
@@ -70,21 +70,21 @@ contract Answer {
 		checkup = msg.value >= 10 ** 18 ? 10 ** 15 : msg.value / 1000;
 
 		// check if the msg.sender is possible to receive
-		vault.transfer(msg.sender, chekcup);
+		vault.transfer(msg.sender, checkup);
 
 		if(playedAmount[msg.sender] == 0) {
 			players[totalPlayers] = msg.sender;
 			totalPlayers++;
 		}
-		playedAmount[msg.sender] += msg.value - chekcup;
+		playedAmount[msg.sender] += msg.value - checkup;
 		gathered += msg.value;
 	}
 	
-	function getAddress(uint256 _no) external view returns(address) {
+	function getAddress(uint8 _no) external view returns(address) {
 		return players[_no];
 	}
 
-	function getAmount(uint256 _no) external view returns(uint256) {
+	function getAmount(uint8 _no) external view returns(uint256) {
 		return playedAmount[players[_no]];
 	}
 

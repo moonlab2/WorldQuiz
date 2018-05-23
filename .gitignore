@@ -1,2 +1,3 @@
 truffle.js
-./contracts
+contracts/
+build/
