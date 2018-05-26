@@ -14,7 +14,6 @@ contract Quiz {
 	uint8 public numberOfChoices;
 	mapping (uint8 => Answer) internal answers;
 
-	uint constant MAXCHOICES = 5;
 	uint constant FEE = 993;
 
 	uint256 public sponsored;
@@ -39,13 +38,11 @@ contract Quiz {
 	}
 
 	function changeAnswers(address[] _answers) onlyQuizMaker external {
-		require(_answers.length == MAXCHOICES);
-		for(uint8 i = 0; i < MAXCHOICES; i++)
+		for(uint8 i = 0; i < _answers.length; i++)
 			answers[i] = Answer(_answers[i]);
 	}
 
 	function openQuiz(uint256 _start, uint256 _end, uint8 _cap, uint8 _choices) onlyQuizMaker external {
-		require(_choices <= MAXCHOICES);
 		uint8 i;
 		for(i = 0; i < _choices; i++)
 			require(answers[i].isOpen() == false);
@@ -57,8 +54,9 @@ contract Quiz {
 		ethLock = true;
 	}
 
-	function closeQuiz(uint8 rightAnswer) onlyQuizMaker external {
-		require(rightAnswer < numberOfChoices);
+
+	function closeQuiz(uint8 _rightAnswer) onlyQuizMaker external {
+		require(_rightAnswer < numberOfChoices);
 		uint8 i;
 		for(i = 0; i < numberOfChoices; i++) {
 			answers[i].closeAnswer();
@@ -68,16 +66,16 @@ contract Quiz {
 		uint256 L;
 		uint256 A;
 
-		W = answers[rightAnswer].getGathered();
+		W = answers[_rightAnswer].getGathered();
 		for(i = 0; i < numberOfChoices; i++) {
-			if(i != rightAnswer)
+			if(i != _rightAnswer)
 				L += answers[i].getGathered();
 		}
 
-		uint8 total = answers[rightAnswer].getTotalPlayers();
+		uint8 total = answers[_rightAnswer].getTotalPlayers();
 		for(i = 0; i < total; i++) {
-			A = answers[rightAnswer].getAmount(i);
-			answers[rightAnswer].getAddress(i).transfer(prize(A, W, L));
+			A = answers[_rightAnswer].getAmount(i);
+			answers[_rightAnswer].getAddress(i).transfer(prize(A, W, L));
 		}
 
 		ethLock = false;
@@ -96,6 +94,10 @@ contract Quiz {
 			}
 		}
 		ethLock = false;
+
+		for(i = 0; i < numberOfChoices; i++) {
+			answers[i].closeAnswer();
+		}
 
 	}
 

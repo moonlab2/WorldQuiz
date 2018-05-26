@@ -37,7 +37,7 @@ contract WQVault {
 		spender[_spender] = false;
 	}
 
-	function transfer(address _to, uint256 _amount) onlySpender external {
+	function transferTo(address _to, uint256 _amount) onlySpender external {
 		_to.transfer(_amount);
 	}
 

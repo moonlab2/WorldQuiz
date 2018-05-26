@@ -70,7 +70,7 @@ contract Answer {
 		checkup = msg.value >= 10 ** 18 ? 10 ** 15 : msg.value / 1000;
 
 		// check if the msg.sender is possible to receive
-		vault.transfer(msg.sender, checkup);
+		vault.transferTo(msg.sender, checkup);
 
 		if(playedAmount[msg.sender] == 0) {
 			players[totalPlayers] = msg.sender;
