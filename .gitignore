@@ -1,5 +1,5 @@
 truffle.js
 contracts/skldjflkd
-contracts/*.swp
+contracts/*swp
 build/
 migrations/
