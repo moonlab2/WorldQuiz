@@ -87,17 +87,21 @@ contract Quiz {
 
 	function cancelQuiz() onlyQuizMaker public {
 		uint8 total;
-		for(uint8 i = 0; i < numberOfChoices; i++) {
+		uint8 i;
+		uint8 j;
+
+		for(i = 0; i < numberOfChoices; i++) {
+			answers[i].closeAnswer();
+		}
+
+		for(i = 0; i < numberOfChoices; i++) {
 			total = answers[i].getTotalPlayers();
-			for(uint8 j = 0; j < total; j++) {
+			for(j = 0; j < total; j++) {
 				answers[i].getAddress(j).transfer(answers[i].getAmount(j));
 			}
 		}
 		ethLock = false;
 
-		for(i = 0; i < numberOfChoices; i++) {
-			answers[i].closeAnswer();
-		}
 
 	}
 
