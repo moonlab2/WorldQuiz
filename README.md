@@ -2,8 +2,12 @@
 
 ## VERY IMPORTANT
 If you want to play World Quiz, <br />
-DON'T USE EXCHANGE WALLET!! USE ADDRESS THAT CAN SEND AND RECEIVE ETH.<br />
+DO NOT USE EXCHANGE WALLET!! USE ADDRESS THAT CAN SEND AND RECEIVE ETH.<br />
 World Quiz will send ETH to the address that you sent from. If you use exchange wallet, you can't receive your winning prize.
+
+## Why World Quiz?
+There are so many fraud and distrust in online games. 
+But you can trust of this game. It's on blockchain and NO ONE can't stop you earn your winnings. World Quiz Maker, Vit(Vitalik Buterin), even GOD can't.(Maybe God can. :-p)
 
 ## How To Play?
 You'll see a question about an event, news or whatever will happen in few days. 
