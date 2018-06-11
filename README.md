@@ -7,7 +7,7 @@ World Quiz will send ETH to the address that you sent from. If you use exchange 
 
 ## Why World Quiz?
 There are so many fraud and distrust in online games. 
-But you can trust of this game. It's on blockchain and NO ONE can't stop you earn your winnings. World Quiz Maker, Vit(Vitalik Buterin), even GOD can't.(Maybe God can. :-p)
+But you can trust 100% here. It's on blockchain and NO ONE can't stop you earn your winnings. World Quiz Maker, Vit(Vitalik Buterin), even GOD can't.(Oh wait, maybe God can.)
 
 ## How To Play?
 You'll see a question about an event, news or whatever will happen in few days. 
@@ -18,8 +18,8 @@ If you choose the right answer, you'll get your ETH back with prize ETH. If you 
 All the following rules will be coded and veryfied on ethereum and no one can change, take advantages or crack(hopefully).<br />
 
 ### ETH
-All played ETH will be returned to winners excluding the fee(0.7%).<br />
-Even Quiz Maker can't touch the ETH until prize ETH return to players.
+All played ETH will be returned to winners excluding the fee(0.7%).
+Even Quiz Maker can't touch the ETH until prize ETH return to players.<br />
 Quiz Maker can cancel the quiz when really bad things happen. Then all players get refund their ETH.<br />
 Only after returning back all ETH, quiz maker can retrieve the fee ETH.
 

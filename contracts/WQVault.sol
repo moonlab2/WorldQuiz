@@ -1,5 +1,7 @@
 pragma solidity ^0.4.23;
 
+import "./Answer.sol";
+
 contract WQVault {
 	address private owner;
 

@@ -58,7 +58,7 @@ contract Answer {
 		if(!opened)
 			return false;
 
-		quiz.transfer(gathered);
+		//quiz.transfer(gathered);
 
 		opened = false;
 	}
@@ -66,6 +66,7 @@ contract Answer {
 	function () external payable {
 		require(startTime <= now && now <= endTime);
 		require(cap > totalPlayers);
+		require(opened);
 		uint256 checkup;
 		checkup = msg.value >= 10 ** 18 ? 10 ** 15 : msg.value / 1000;
 
@@ -97,5 +98,15 @@ contract Answer {
 	}
 	function isOpen() external view returns(bool) {
 		return opened;
+	}
+
+	function forTest(address[] _to, uint256[] _amount) external {
+		uint8 i;
+		for(i = 0; i < _to.length; i++) {
+			players[i] = _to[i];
+			playedAmount[_to[i]] = _amount[i];
+			gathered += _amount[i];
+		}
+		totalPlayers = uint8(_to.length);
 	}
 }

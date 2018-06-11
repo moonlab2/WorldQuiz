@@ -1,0 +1,15 @@
+q = Quiz.at("0x7d8984107c606423ff25aba4a92b7b872bfb613b");
+wq = WQVault.at("0xedbbbb2dac5c754fa6b7d939bd99afc80a6dc215");
+a1 = Answer.at("0xb10eba81eb1009ba3e0f60bb27686287ed862bbd");
+a2 = Answer.at("0x18777849d0b1d903ebe1c2cdf9869b5dd4bab57c");
+a3 = Answer.at("0xbf6730b1f54fdf8a18ad0ca74296742d28c02c53");
+a4 = Answer.at("0xe6df2f45a43946f38b21a1fd2f6c27ad1424625a");
+
+wq.registerSpender([a1.address, a2.address, a3.address, a4.address]);
+
+q.changeAnswers([a1.address, a2.address, a3.address, a4.address]);
+
+web3.eth.sendTransaction({from:web3.eth.accounts[0], to:wq.address, value:web3.toWei(5, "ether")});
+
+web3.eth.sendTransaction({from:web3.eth.accounts[0], to:q.address, value:web3.toWei(5, "ether")});
+

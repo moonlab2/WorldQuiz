@@ -14,7 +14,7 @@ contract Quiz {
 	uint8 public numberOfChoices;
 	mapping (uint8 => Answer) internal answers;
 
-	uint constant FEE = 993;
+	uint constant RETURN = 993;
 
 	uint256 public sponsored;
 
@@ -57,6 +57,10 @@ contract Quiz {
 
 	function closeQuiz(uint8 _rightAnswer) onlyQuizMaker external {
 		require(_rightAnswer < numberOfChoices);
+
+		for(i = 0; i < numberOfChoices; i++)
+			require(answers[i].isOpen());
+
 		uint8 i;
 		for(i = 0; i < numberOfChoices; i++) {
 			answers[i].closeAnswer();
@@ -82,10 +86,13 @@ contract Quiz {
 	}
 
 	function prize(uint256 _A, uint256 _W, uint256 _L) internal pure returns(uint256) {
-		return ((_W + _L) * _A * FEE / 1000) / _W;
+		return ((_W + _L) * _A * RETURN / 1000) / _W;
 	}
 
 	function cancelQuiz() onlyQuizMaker public {
+		for(i = 0; i < numberOfChoices; i++)
+			require(answers[i].isOpen());
+
 		uint8 total;
 		uint8 i;
 		uint8 j;
