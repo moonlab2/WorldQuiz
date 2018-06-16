@@ -6,6 +6,8 @@ contract Answer {
 	address public quiz;
 	WQVault vault;
 
+	address public wqt;
+
 	uint256 public gathered;
 	uint8 public cap;
 
@@ -37,6 +39,11 @@ contract Answer {
 		quiz = _quiz;
 	}
 
+	// for WQT
+	function registerWQT(address _wqt) fromQuizContract external {
+		wqt = _wqt;
+	}
+
 	function openAnswer(uint256 _start, uint256 _end, uint8 _cap) fromQuizContract external {
 		require(!opened);
 
@@ -54,11 +61,19 @@ contract Answer {
 		totalPlayers = 0;
 	}
 
-	function closeAnswer() fromQuizContract external returns (bool){
+	function closeAnswer(bool _withToken) fromQuizContract external returns (bool){
 		if(!opened)
 			return false;
 
-		//quiz.transfer(gathered);
+		quiz.transfer(gathered);
+
+		// WQT
+		// burn all token
+		if(_withToken) {
+			uint256 tokenGathered;
+			tokenGathered = wqt.call(bytes4(keccak256("getBalaceOf(address)"), this));
+			wqt.call(bytes4(keccak256("burn(uint256)")), tokenGathered);
+		}
 
 		opened = false;
 	}

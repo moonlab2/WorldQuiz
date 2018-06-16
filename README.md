@@ -28,7 +28,7 @@ Each question has it's own time limit for playing. You can't play after the limi
 
 ### prize calculation
 if X answered right, what X will get is <br />
-(W + L) * 0.993 * A / W<br />
+(W + L) * 0.983 * A / W<br />
 W: total gathered ETH on right answer<br />
 L: total gathered ETH on wrong answer<br />
 A: ETH transfered from address X<br />
@@ -36,7 +36,7 @@ A: ETH transfered from address X<br />
 if X transfered ETH to wrong answer contract, X gets nothing.
 
 ## Policies
-0.7% of total funded ETH goes to moonglade lab. and the ETH will be used for better Quiz lottery or donated to admirable organizations(github?)<br />
+1.7% of total funded ETH goes to moonglade lab. and the ETH will be used for better Quiz lottery or donated to admirable organizations(github?)<br />
 Only the Quiz Maker can publish a quiz.<br />
 
 

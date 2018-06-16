@@ -63,7 +63,7 @@ contract Quiz {
 
 		uint8 i;
 		for(i = 0; i < numberOfChoices; i++) {
-			answers[i].closeAnswer();
+			answers[i].closeAnswer(false);
 		}
 
 		uint256 W;
@@ -98,7 +98,7 @@ contract Quiz {
 		uint8 j;
 
 		for(i = 0; i < numberOfChoices; i++) {
-			answers[i].closeAnswer();
+			answers[i].closeAnswer(false);
 		}
 
 		for(i = 0; i < numberOfChoices; i++) {
@@ -108,7 +108,6 @@ contract Quiz {
 			}
 		}
 		ethLock = false;
-
 
 	}
 
