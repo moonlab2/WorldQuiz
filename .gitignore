@@ -1,8 +1,6 @@
-truffle.js
 contracts/forGanache
 contracts/*swp
 build/
-migrations/
 rkb1
 rkb2
 rkb3
