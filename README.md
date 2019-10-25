@@ -18,7 +18,7 @@ If you choose the right answer, you'll get your ETH back with prize ETH. If you 
 All the following rules will be coded and veryfied on ethereum and no one can change, take advantages or crack(hopefully).<br />
 
 ### ETH
-All played ETH will be returned to winners excluding the fee(0.7%).
+All played ETH will be returned to winners excluding the fee(8%).
 Even Quiz Maker can't touch the ETH until prize ETH return to players.<br />
 Quiz Maker can cancel the quiz when really bad things happen. Then all players get refund their ETH.<br />
 Only after returning back all ETH, quiz maker can retrieve the fee ETH.
@@ -28,7 +28,7 @@ Each question has it's own time limit for playing. You can't play after the limi
 
 ### prize calculation
 if X answered right, what X will get is <br />
-(W + L) * 0.983 * A / W<br />
+(W + L) * 0.92 * A / W<br />
 W: total gathered ETH on right answer<br />
 L: total gathered ETH on wrong answer<br />
 A: ETH transfered from address X<br />
@@ -36,7 +36,7 @@ A: ETH transfered from address X<br />
 if X transfered ETH to wrong answer contract, X gets nothing.
 
 ## Policies
-1.7% of total funded ETH goes to moonglade lab. and the ETH will be used for better Quiz lottery or donated to admirable organizations(github?)<br />
+8% of total funded ETH goes to moonglade lab. and the ETH will be used for better Quiz lottery or donated to admirable organizations(github?)<br />
 Only the Quiz Maker can publish a quiz.<br />
 
 
